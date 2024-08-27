@@ -1,0 +1,16 @@
+services:
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./data/caddy/Caddyfile:/etc/caddy/Caddyfile
+      - ./data/caddy/logs:/var/log/caddy
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
